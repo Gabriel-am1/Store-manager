@@ -16,7 +16,15 @@ const getByIdController = async (req, res) => {
   return res.status(200).json(data);
 };
 
+const createController = async (req, res) => {
+  const { name } = req.body;
+  console.log(name);
+  const response = await productService.create(name);
+  res.status(201).json(response);
+};
+
 module.exports = {
   getAllController,
   getByIdController,
+  createController,
 };

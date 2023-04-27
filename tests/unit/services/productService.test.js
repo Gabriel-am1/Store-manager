@@ -25,13 +25,14 @@ describe('product service layer', function () {
           expect(result).to.be.deep.equal(productsMockFromDB[0]);
         });
 
-        // it("Testa a inserção de um produto no banco", async function () {
-        //   sinon.stub(productModel, "createProd").resolves({ insertId: 4 });
-        //   const result = await productService.createService(
-        //     "Armadura do Homem de Ferro"
-        //   );
-        //   expect(result).to.deep.equal([productsMockFromDB[4]]);
-        // });
+        // describe('busca de um produto inserido', function () {
+        //   it("Testa a inserção de um produto no banco", async function () {
+        //     sinon.stub(productModel, "createProd").resolves({ insertId: 4 });
+        //     const result = await productService.createService(
+        //       "Armadura do Homem de Ferro"
+        //     );
+        //     expect(result).to.deep.equal([productsMockFromDB[4]]);
+        //   });
       });
     });
   });

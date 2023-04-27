@@ -15,7 +15,22 @@ const getByIdController = async (id) => {
   return product;
 };
 
+const createProd = async (product) => {
+  // const columns = Object.keys(product).join(', ');
+
+  // const placeHolders = Object.keys(product)
+  //   .map((_key) => '?')
+  //   .join(', ');
+  
+const [{ insertId }] = await connection.execute(
+  'INSERT INTO StoreManager.products (name)  VALUES (?);',
+  [product],
+  );
+return insertId;
+};
+
 module.exports = {
   getAllController,
   getByIdController,
+  createProd,
 };

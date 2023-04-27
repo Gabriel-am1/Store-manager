@@ -12,7 +12,13 @@ const getByIdController = async (id) => {
   return product;
 };
 
+const create = async (name) => {
+  const { insertId } = await productModel.createProd(name);
+  return { id: insertId, name };
+};
+
 module.exports = {
   getAllController,
   getByIdController,
+  create,
 };
