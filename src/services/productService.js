@@ -13,7 +13,7 @@ const getByIdController = async (id) => {
 };
 
 const create = async (name) => {
-  const { insertId } = await productModel.createProd(name);
+  const insertId = await productModel.createProd(name);
   return { id: insertId, name };
 };
 

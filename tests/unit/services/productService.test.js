@@ -1,19 +1,19 @@
 const sinon = require('sinon');
-const { expect } = require('chai') 
+const { expect } = require('chai')
 const { productsMockFromDB } = require('./productsMockFromDB');
 const { productService } = require('../../../src/services');
 const { productModel } = require('../../../src/models');
 
 describe('product service layer', function () {
-    afterEach(function () {
-      sinon.restore();
-    });
+  afterEach(function () {
+    sinon.restore();
+  });
 
   describe("test service products", function () {
     describe("Testa quando tem produtos no banco", function () {
       it("testa a busca por todos os produtos no banco", async function () {
         sinon.stub(productModel, "getAllController").resolves(productsMockFromDB);
-        
+
         const result = await productService.getAllController();
         expect(result).to.deep.equal(productsMockFromDB);
       });
@@ -36,4 +36,4 @@ describe('product service layer', function () {
       });
     });
   });
-  });
+});
