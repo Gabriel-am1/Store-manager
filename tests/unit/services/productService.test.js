@@ -1,39 +1,34 @@
-const sinon = require('sinon');
-const { expect } = require('chai')
-const { productsMockFromDB } = require('./productsMockFromDB');
-const { productService } = require('../../../src/services');
-const { productModel } = require('../../../src/models');
+const sinon = require("sinon");
+const { expect } = require("chai");
 
-describe('product service layer', function () {
-  afterEach(function () {
-    sinon.restore();
-  });
+const {
+  productsMockFromDB,
+  productById,
+  newProduct,
+} = require("../models/mocks/products.model.mocks");
+const { productsModel } = require("../../../src/models");
 
-  describe("test service products", function () {
-    describe("Testa quando tem produtos no banco", function () {
-      it("testa a busca por todos os produtos no banco", async function () {
-        sinon.stub(productModel, "getAllController").resolves(productsMockFromDB);
+const { productsService } = require("../../../src/services");
 
-        const result = await productService.getAllController();
-        expect(result).to.deep.equal(productsMockFromDB);
-      });
-      describe('busca de um produto', function () {
-        it("Testa a busca por um produto no banco", async function () {
-          sinon.stub(productModel, "getByIdController").resolves(productsMockFromDB[0]);
-
-          const result = await productService.getByIdController(1);
-          expect(result).to.be.deep.equal(productsMockFromDB[0]);
-        });
-
-        // describe('busca de um produto inserido', function () {
-        //   it("Testa a inserção de um produto no banco", async function () {
-        //     sinon.stub(productModel, "createProd").resolves({ insertId: 4 });
-        //     const result = await productService.createService(
-        //       "Armadura do Homem de Ferro"
-        //     );
-        //     expect(result).to.deep.equal([productsMockFromDB[4]]);
-        //   });
-      });
+describe("TEST SERVICE PRODUCTS", () => {
+  describe("Testa quando tem produtos no banco ", () => {
+    it("Testa a busca por todos os produtos no banco", async () => {
+      sinon.stub(productsModel, "getAllProd").resolves(productsMockFromDB);
+      const result = await productsService.getAllService();
+      expect(result).to.deep.equal(productsMockFromDB);
     });
+    it("Testa a busca por um produto no banco", async () => {
+      sinon.stub(productsModel, "getByIdProd").resolves(productById);
+      const result = await productsService.getByIdService(2);
+      expect(result).to.deep.equal(productById);
+    });
+    it("Testa a inserção de um produto no banco", async () => {
+      sinon.stub(productsModel, "createProd").resolves({ insertId: 4 });
+      const result = await productsService.createService(
+        "Armadura do Homem de Ferro"
+      );
+      expect(result).to.deep.equal(newProduct);
+    });
+    afterEach(sinon.restore);
   });
 });
