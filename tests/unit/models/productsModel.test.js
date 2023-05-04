@@ -4,8 +4,6 @@ const connection = require("../../../src/models/connection");
 
 const {
   productsMockFromDB,
-  productById,
-  newProduct
 } = require("./mocks/products.model.mocks");
 
 const { productsModel } = require("../../../src/models");
